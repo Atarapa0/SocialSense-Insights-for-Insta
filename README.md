@@ -1,109 +1,227 @@
+# SocialSense
 
-# SocialSense : Insights for Insta 📊
-
-**SocialSense** is a secure, device-based analysis tool that provides deep insights by analyzing your Instagram data (GDPR/Data Download package).
+SocialSense is a Flutter app that turns an Instagram JSON data export into local follower, engagement, activity, and messaging insights.
 
 <p align="center">
-  <a href="#">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" height="50">
-  </a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="#">
-    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" height="50">
-  </a>
+  <img src="assets/logo/socialsense_logo.png" alt="SocialSense logo" width="140">
 </p>
 
-> **🌐 Website:** [furkanerdogan.com](https://furkanerdogan.com)
+<p align="center">
+  <img src="https://img.shields.io/badge/Flutter-3.38.3-02569B?logo=flutter&logoColor=white" alt="Flutter 3.38.3">
+  <img src="https://img.shields.io/badge/Dart-%5E3.10.1-0175C2?logo=dart&logoColor=white" alt="Dart ^3.10.1">
+  <img src="https://img.shields.io/badge/Version-1.0.3%2B7-5B5CFF" alt="Version 1.0.3+7">
+  <img src="https://img.shields.io/badge/License-MIT-2ECC71" alt="MIT License">
+</p>
 
 ---
 
-## 🇺🇸 English
+## 📖 Overview
 
-### 🔒 Security First
-**SocialSense** does **NOT** ask for your Instagram password. You do not need to log in. All analysis happens **offline on your device**. Your data is never sent to any server.
+SocialSense analyzes the JSON ZIP archive available through Instagram's data download tools. It is designed for Instagram users who want to inspect account relationships and interaction patterns without signing in through the app.
 
-### 🌟 Features
-*   **👥 Follower Analysis:**
-    *   **Don't Follow Back:** Users you follow who don't follow you back.
-    *   **Ghost Followers:** Followers who rarely like or comment on your posts.
-    *   **Mutual Followers:** Users you follow and who follow you back.
-    *   **Top Fans:** Your most loyal followers.
-*   **📊 Engagement Reports:**
-    *   Top Likers & Commenters.
-    *   Most messaged users.
-    *   Story interaction analysis.
-*   **📈 Activity Charts:**
-    *   Your most active hours and days.
-*   **� Message & Reels Analysis:**
-    *   Top users you send Reels to.
-    *   Top users who send you Reels.
-
-### 🚀 How to Use?
-1.  Download and open the app.
-2.  Tap on **"Start Now"**.
-3.  Follow the **"How to?"** guide inside the app to request your data from Instagram (JSON format).
-4.  Upload the downloaded **ZIP file** to SocialSense.
-5.  All your stats will be ready in seconds!
+The archive is selected from the device, parsed in a background isolate, and saved in the app's local documents directory. Parsed account data is not uploaded by the analysis flow; Google Mobile Ads and links opened outside the app may still use network access.
 
 ---
 
-## 🇹🇷 Türkçe
+## ✨ Features
 
-### 🔒 Önce Güvenlik
-**SocialSense** Instagram şifrenizi **İSTEMEZ**. Giriş yapmanıza gerek yoktur. Tüm analizler **tamamen sizin cihazınızda** (offline) gerçekleşir. Verileriniz asla herhangi bir sunucuya gönderilmez.
-
-### 🌟 Özellikler
-*   **👥 Takipçi Analizi:**
-    *   **Geri Takip Etmeyenler:** Sizin takip ettiğiniz ama sizi takip etmeyenler.
-    *   **Hayalet Takipçiler (Ghost Followers):** Sizi takip eden ama gönderilerinizi beğenmeyen/yorum yapmayanlar.
-    *   **Karşılıklı Takip:** İki taraflı takipleştiğiniz kişiler.
-    *   **Hayranlarınız:** En sadık takipçileriniz.
-*   **📊 Etkileşim Raporları:**
-    *   En çok beğeni ve yorum yapanlar.
-    *   En çok mesajlaştığınız kişiler.
-    *   Hikaye (Story) etkileşimleri.
-*   **📈 Aktivite Grafikleri:**
-    *   En aktif olduğunuz saatler ve günler.
-*   **💬 Mesaj & Reels Analizi:**
-    *   En çok Reels gönderdiğiniz kişiler.
-    *   Size en çok Reels gönderenler.
-
-### � Nasıl Kullanılır?
-1.  Uygulamayı indirin ve açın.
-2.  **"Hemen Başla"** butonuna basın.
-3.  Uygulama içindeki **"Nasıl Yapılır?"** rehberini izleyerek Instagram'dan verilerinizi indirin (JSON formatında).
-4.  İndirdiğiniz **ZIP dosyasını** uygulamaya yükleyin.
-5.  Saniyeler içinde tüm istatistikleriniz hazır!
+- **Data import and storage** — selects Instagram ZIP exports, rejects HTML or unrelated archives, parses supported JSON files, restores the last analysis on launch, and supports reloading or deleting stored data.
+- **Follower analysis** — shows mutual followers, accounts that do not follow back, followers the user does not follow, and estimated ghost followers based on recent likes and comments.
+- **Engagement insights** — ranks top fans and the most liked, commented, and saved accounts; calculates a recent engagement estimate; and links account rows to Instagram profiles.
+- **Activity reports** — summarizes active hours, monthly like activity, weekday versus weekend activity, and morning, afternoon, evening, and night distribution.
+- **Messages and sharing** — counts conversations and sent or received messages, then ranks accounts by direct-message and Reels sharing volume.
+- **Additional reports** — displays story likes, close friends, sent and received follow requests, saved content, and categorized interests when those files exist in the export.
+- **Alerts** — creates data-driven alerts for non-reciprocal follows, estimated ghost followers, and pending follow requests, with persisted read state.
+- **Guided experience** — includes a four-step Instagram export tutorial, Turkish and English localization, and persisted light or dark themes.
+- **Mobile ads** — integrates consent handling plus banner, interstitial, and app-open ads through Google Mobile Ads.
 
 ---
 
-## 📱 Screenshots / Ekran Görüntüleri
+## 🛠 Tech Stack
 
-| Main Screen (Dark) | Reports (Dark) | Messages & Reels |
-|:---:|:---:|:---:|
-| <img src="demo/ss/home_tr.jpg" width="250" alt="Home Dark Mode" /> | <img src="demo/ss/reports_tr.jpg" width="250" alt="Reports Dark Mode" /> | <img src="demo/ss/messenges_reels_tr.jpg" width="250" alt="Messages TR" /> |
-| **Light Mode** | **Alerts** | **Messaging (Light)** |
-| <img src="demo/ss/white_home_tr.jpg" width="250" alt="Home Light Mode" /> | <img src="demo/ss/alert en.jpg" width="250" alt="Alerts" /> | <img src="demo/ss/messenges_reels_en.jpg" width="250" alt="Messages EN" /> |
+| Category | Technologies |
+| --- | --- |
+| Application | Flutter, Dart, Material Design |
+| Platforms | Android, iOS |
+| State management | Provider, `ChangeNotifier`, `MultiProvider` |
+| Data processing | `archive`, `dart:convert`, Flutter `compute` |
+| Local storage | Application documents directory, Shared Preferences |
+| File and link integration | File Picker, Path Provider, URL Launcher |
+| Localization | Flutter Localizations, custom Turkish and English dictionaries |
+| Monetization | Google Mobile Ads, User Messaging Platform consent flow |
+| Tooling | Flutter Test, Flutter Lints, Flutter Launcher Icons, Gradle, CocoaPods |
 
 ---
 
-## � Development (Geliştirme)
+## 🏗 Architecture
 
-This project is built with **Flutter**.
+The app uses a lightweight layered architecture split between reusable core logic and the presentation layer.
+
+| Layer | Responsibility |
+| --- | --- |
+| `core/models` | Represents imported Instagram users, likes, comments, messages, interests, saved items, and aggregate data. |
+| `core/services` | Decodes ZIP archives, parses supported JSON structures, and manages mobile ad lifecycles. |
+| `core/providers` | Owns imported data, loading and error state, computed analytics, and local persistence. |
+| `presentation/providers` | Stores UI settings and alert read state. |
+| `presentation/screens` | Implements onboarding, upload, dashboard, analysis, report, and settings flows. |
+| `presentation/widgets` | Provides reusable dashboard, report, tutorial, settings, alert, and ad components. |
+
+`MultiProvider` creates the shared `InstagramDataProvider`, `AppSettingsProvider`, and `AlertsProvider` instances at startup. Widgets subscribe to these `ChangeNotifier` objects and rebuild when imported data or preferences change.
+
+Navigation uses `MaterialPageRoute`. The splash screen restores local data and routes to either onboarding or the dashboard. The dashboard contains four in-page destinations: Home, Reports, Alerts, and Settings.
+
+```text
+Instagram JSON ZIP
+        |
+        v
+File Picker -> InstagramDataParser -> InstagramDataProvider
+                                         |
+                         +---------------+---------------+
+                         |                               |
+                         v                               v
+                 Local JSON storage              Provider consumers
+                                                        |
+                                                        v
+                                      Dashboard, reports, and alerts
+```
+
+The parser runs through `compute` to keep ZIP decoding away from the UI isolate. Parsed models are serialized to the app documents directory, while theme, language, alert state, and update metadata are stored with Shared Preferences. Dependency injection is limited to Provider registration; parsing helpers are static and the ad service is a singleton.
+
+---
+
+## 📂 Project Structure
+
+```text
+socialsense/
+├── lib/
+│   ├── core/
+│   │   ├── constants/       # Colors and mobile ad identifiers
+│   │   ├── localization/    # Turkish and English UI strings
+│   │   ├── models/          # Imported data models and analytics
+│   │   ├── providers/       # Instagram data state and persistence
+│   │   ├── services/        # ZIP parser and ad lifecycle service
+│   │   ├── theme/           # Light and dark Material themes
+│   │   └── utils/           # Instagram profile and content launchers
+│   ├── presentation/
+│   │   ├── providers/       # Settings and alert state
+│   │   ├── screens/         # User-facing flows and detail pages
+│   │   └── widgets/         # Reusable cards and controls
+│   └── main.dart            # App bootstrap and provider registration
+├── assets/                  # App logo and bilingual tutorial images
+├── demo/ss/                 # Repository screenshots
+├── android/                 # Android runner and Gradle configuration
+├── ios/                     # iOS runner and CocoaPods configuration
+├── test/                    # Flutter widget tests
+└── pubspec.yaml             # Package metadata, dependencies, and assets
+```
+
+Flutter runner scaffolding also exists for web, macOS, Linux, and Windows. The current ad service and native ad configuration are implemented for Android and iOS.
+
+---
+
+## 🚀 Getting Started
 
 ### Requirements
-*   Flutter SDK (3.10.0+)
-*   Dart SDK (3.0.0+)
+
+- Flutter stable compatible with Dart `^3.10.1`; the project metadata currently records Flutter `3.38.3`.
+- Android Studio or the Android SDK and JDK 17 for Android development.
+- macOS, Xcode, and CocoaPods for iOS development.
 
 ### Installation
+
 ```bash
-git clone https://github.com/KULLANICI_ADI/socialsense.git
+git clone https://github.com/Atarapa0/socialsense-insta.git
+cd socialsense-insta
 flutter pub get
+```
+
+### Configuration
+
+The project does not read environment variables. Mobile advertising and Android release signing use local files that are excluded by `.gitignore`:
+
+| File | Required configuration |
+| --- | --- |
+| `lib/core/constants/ad_ids.dart` | Defines Android and iOS app-open, interstitial, and banner ad unit constants used by `AdService` and `BannerAdWidget`. |
+| `android/app/src/main/AndroidManifest.xml` | Declares the Flutter activity and the Google Mobile Ads application ID. |
+| `ios/Runner/Info.plist` | Declares the iOS bundle settings, file access description, and Google Mobile Ads application ID. |
+| `android/key.properties` | Points Gradle to the release keystore and supplies its alias and credentials. |
+| `android/app/*.jks` | Contains the Android release signing key referenced by `key.properties`. |
+
+Use development or test ad IDs while working locally. Production identifiers and signing credentials should remain outside version control.
+
+### Run
+
+```bash
 flutter run
+```
+
+Choose a target explicitly when multiple devices are available:
+
+```bash
+flutter devices
+flutter run -d <device-id>
+```
+
+### Build
+
+```bash
+# Android APK
+flutter build apk
+
+# Android App Bundle
+flutter build appbundle
+
+# iOS archive input; requires macOS and Xcode signing configuration
+flutter build ios
+```
+
+### Quality Checks
+
+```bash
+flutter analyze
+flutter test
+```
+
+Regenerate launcher icons after changing the source logo:
+
+```bash
+dart run flutter_launcher_icons
 ```
 
 ---
 
-<p align="center">
-  <sub>Developed with ❤️ by <a href="https://furkanerdogan.com">Furkan Erdogan</a></sub>
-</p>
+## 📸 Screenshots
+
+| Home — Dark | Reports — Dark | Messages and Reels — Dark |
+| :---: | :---: | :---: |
+| <img src="demo/ss/home_tr.jpg" alt="SocialSense home screen in dark mode" width="240"> | <img src="demo/ss/reports_tr.jpg" alt="SocialSense reports screen in dark mode" width="240"> | <img src="demo/ss/messenges_reels_tr.jpg" alt="SocialSense messages and Reels report in dark mode" width="240"> |
+
+| Home — Light | Alerts — Light | Messages and Reels — Light |
+| :---: | :---: | :---: |
+| <img src="demo/ss/white_home_tr.jpg" alt="SocialSense home screen in light mode" width="240"> | <img src="demo/ss/alert%20en.jpg" alt="SocialSense alerts screen in light mode" width="240"> | <img src="demo/ss/messenges_reels_en.jpg" alt="SocialSense messages and Reels report in light mode" width="240"> |
+
+---
+
+## 🗺 Roadmap
+
+- Implement alert dismissal and clear-all behavior.
+- Replace the comment activity placeholder with a computed time series.
+- Connect the cache-clearing setting to stored cache data.
+- Use the packaged logo on the welcome screen.
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository and create a focused branch.
+2. Keep changes consistent with the existing `core` and `presentation` boundaries.
+3. Run `flutter analyze` and `flutter test`.
+4. Submit a pull request describing the behavior and verification performed.
+
+Do not commit Instagram exports, ZIP archives, ad credentials, or signing keys.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
