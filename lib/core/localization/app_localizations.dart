@@ -284,9 +284,9 @@ class AppLocalizations {
     'faq_q3': 'Hayalet Takipçi nedir?',
     'faq_a3':
         'Sizi takip eden ancak gönderilerinizi beğenmeyen veya yorum yapmayan kullanıcılardır.',
-    'faq_q4': 'Analizler ne kadar doğru?',
+    'faq_q4': 'Analizler ne kadar güvenilir?',
     'faq_a4':
-        'Analizler resmi Instagram verilerine dayandığı için %100 doğrudur.',
+        'Instagram’dan indirdiğiniz veri arşivinde bulunan bilgileri işleyerek anlaşılır şekilde size gösteriyoruz. Sonuçlar, arşivde yer alan verilerle sınırlıdır.',
     'faq_q5': 'Uygulama ücretli mi?',
     'faq_a5': 'Şu anda tamamen ücretsizdir.',
 
@@ -391,49 +391,6 @@ class AppLocalizations {
     'minutes_ago': '%count dk önce',
     'hours_ago': '%count saat önce',
     'days_ago': '%count gün önce',
-
-    // Yasal
-    'legal_disclaimer_title': 'Sorumluluk Reddi',
-    'privacy_policy_content': '''
-**Gizlilik Politikası**
-
-**1. Veri Toplama ve Kullanım**
-SocialSense, kişisel verilerinizi sunucularında toplamaz, saklamaz veya üçüncü taraflarla paylaşmaz. Uygulamaya yüklediğiniz Instagram verileri (ZIP dosyası), tamamen kendi cihazınızda (yerel olarak) işlenir ve analiz edilir.
-
-**2. Reklam Verileri**
-Uygulama, reklam gösterimi için Google AdMob hizmetini kullanmaktadır. Bu hizmet, size daha ilgili reklamlar göstermek amacıyla reklam kimliği (Advertising ID) gibi bazı cihaz bilgilerini toplayabilir. Bu veriler, Google'ın gizlilik politikasına uygun olarak işlenir ve sadece reklam gösterimi için kullanılır. Reklam verileriniz, Instagram analiz verilerinizle hiçbir şekilde ilişkilendirilmez veya birleştirilmez.
-
-**3. Veri Güvenliği**
-Tüm analiz işlemleri çevrimdışı olarak telefonunuzda gerçekleşir. Instagram verileriniz hiçbir şekilde internet üzerinden dışarıya aktarılmaz. Bu nedenle verilerinizin güvenliği ve gizliliği tam kontrolünüz altındadır.
-
-**4. Sorumluluk Reddi**
-Bu uygulamanın geliştiricisi, kullanıcının Instagram verilerine erişemez ve bu verilerin güvenliğinden sorumlu tutulamaz. Cihazınızın güvenliği ve verilerinizin korunması tamamen kullanıcının sorumluluğundadır.
-
-**5. Değişiklikler**
-Bu gizlilik politikası zaman zaman güncellenebilir. Yeni güncellemeler socialsense.furkanerdogan.com adresinde yayınlanacaktır.
-
-**Son Güncelleme:** Şubat 2026
-''',
-    'terms_of_use_content': '''
-**Kullanım Koşulları**
-
-**1. Kabul**
-Bu uygulamayı indirerek ve kullanarak, aşağıdaki koşulları kabul etmiş sayılırsınız.
-
-**2. Instagram ile Bağlantı**
-SocialSense, Instagram veya Meta ile hiçbir şekilde bağlantılı değildir, onlar tarafından desteklenmemekte veya onaylanmamaktadır. Bu uygulama, kullanıcıların kendi verilerini analiz etmelerine yardımcı olan bağımsız bir araçtır.
-
-**3. Sorumluluk Reddi**
-Uygulamanın kullanımından doğabilecek her türlü risk kullanıcıya aittir. Geliştirici, bu uygulamanın kullanımı sonucunda oluşabilecek veri kaybı, hesap kısıtlaması veya diğer olumsuz durumlardan sorumlu tutulamaz.
-
-**4. "Olduğu Gibi" Sunum**
-Bu uygulama "olduğu gibi" sunulmaktadır. Geliştirici, uygulamanın hatasız olacağını veya sürekli çalışacağını garanti etmez.
-
-**5. Kullanım Hakkı**
-Uygulama sadece kişisel kullanım içindir. Uygulamanın kodlarını kopyalamak, değiştirmek veya dağıtmak yasaktır.
-
-**Son Güncelleme:** Ocak 2026
-''',
   };
 
   // ==========================================
@@ -687,9 +644,9 @@ Uygulama sadece kişisel kullanım içindir. Uygulamanın kodlarını kopyalamak
         'Download your data in JSON format from Instagram settings ("Download Your Information"), then select the ZIP file in the app\'s "Upload Data" section.',
     'faq_q3': 'What are Ghost Followers?',
     'faq_a3': 'Users who follow you but do not like or comment on your posts.',
-    'faq_q4': 'How accurate is the analysis?',
+    'faq_q4': 'How reliable is the analysis?',
     'faq_a4':
-        'The analysis is 100% accurate as it is based on official Instagram data.',
+        'We process the information in the data archive you download from Instagram and present it to you in an understandable format. Results are limited to the data contained in the archive.',
     'faq_q5': 'Is the app free?',
     'faq_a5': 'It is currently completely free.',
 
@@ -794,49 +751,6 @@ Uygulama sadece kişisel kullanım içindir. Uygulamanın kodlarını kopyalamak
     'minutes_ago': '%count min ago',
     'hours_ago': '%count hr ago',
     'days_ago': '%count days ago',
-
-    // Legal
-    'legal_disclaimer_title': 'Disclaimer',
-    'privacy_policy_content': '''
-**Privacy Policy**
-
-**1. Data Collection and Usage**
-SocialSense does not collect, store, or share your personal data on its servers. The Instagram data (ZIP file) you upload to the app is processed and analyzed entirely locally on your device.
-
-**2. Advertising Data**
-The application uses Google AdMob service for displaying advertisements. This service may collect certain device information such as Advertising ID to show you more relevant ads. This data is processed in accordance with Google's privacy policy and is used only for ad serving purposes. Your advertising data is never linked or combined with your Instagram analysis data.
-
-**3. Data Security**
-All analysis operations occur offline on your phone. Your Instagram data is never transferred externally over the internet. Therefore, the security and privacy of your data are under your full control.
-
-**4. Disclaimer**
-The developer of this application has no access to user Instagram data and cannot be held responsible for the security of this data. The security of your device and the protection of your data are entirely the user's responsibility.
-
-**5. Changes**
-This privacy policy may be updated from time to time. New updates will be published at socialsense.furkanerdogan.com.
-
-**Last Updated:** February 2026
-''',
-    'terms_of_use_content': '''
-**Terms of Use**
-
-**1. Acceptance**
-By downloading and using this application, you agree to the following terms.
-
-**2. Affiliation with Instagram**
-SocialSense is in no way affiliated with, supported by, or endorsed by Instagram or Meta. This application is an independent tool that helps users analyze their own data.
-
-**3. Disclaimer**
-Any risk arising from the use of the application belongs to the user. The developer cannot be held responsible for data loss, account restriction, or other negative situations that may occur as a result of using this application.
-
-**4. "As Is" Presentation**
-This application is provided "as is". The developer does not guarantee that the application will be error-free or operate continuously.
-
-**5. Right of Use**
-The application is for personal use only. Copying, modifying, or distributing the application's codes is prohibited.
-
-**Last Updated:** January 2026
-''',
   };
 }
 

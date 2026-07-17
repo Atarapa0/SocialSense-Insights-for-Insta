@@ -21,7 +21,6 @@ import 'package:socialsense/presentation/widgets/dashboard/active_hour_card.dart
 import 'package:socialsense/presentation/widgets/reports/follower_details_card.dart';
 import 'package:socialsense/presentation/widgets/reports/account_analysis_card.dart';
 import 'package:socialsense/presentation/widgets/reports/direct_messages_card.dart';
-import 'package:socialsense/presentation/widgets/ads/banner_ad_widget.dart';
 
 import 'package:socialsense/presentation/widgets/reports/activity_timeline_card.dart';
 import 'package:socialsense/presentation/widgets/reports/time_distribution_card.dart';
@@ -31,12 +30,11 @@ import 'package:socialsense/presentation/widgets/reports/story_likes_card.dart';
 import 'package:socialsense/presentation/widgets/reports/close_friends_card.dart';
 import 'package:socialsense/presentation/screens/settings/contact_screen.dart';
 import 'package:socialsense/presentation/screens/settings/faq_screen.dart';
-import 'package:socialsense/presentation/screens/settings/privacy_policy_screen.dart';
-import 'package:socialsense/presentation/screens/settings/terms_of_use_screen.dart';
 import 'package:socialsense/presentation/widgets/reports/follow_requests_card.dart';
 import 'package:socialsense/presentation/widgets/reports/saved_content_detail_card.dart';
 import 'package:socialsense/presentation/widgets/alerts/alert_card.dart';
 import 'package:socialsense/presentation/widgets/settings/settings_tile.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Dashboard Ana Ekranı
 /// Instagram istatistiklerinin gösterildiği ana sayfa
@@ -536,11 +534,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             },
           ),
 
-          const SizedBox(height: 16),
-
-          // REKLAM - Banner (En Alt)
-          const BannerAdWidget(),
-
           const SizedBox(height: 100), // Bottom nav için boşluk
         ],
       ),
@@ -968,13 +961,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
           const SizedBox(height: 24),
 
-          const SizedBox(height: 16),
-
-          // REKLAM - Banner
-          const BannerAdWidget(),
-
-          const SizedBox(height: 16),
-
           // Zaman Dağılımı
           if (hasData)
             TimeDistributionCard(
@@ -991,11 +977,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
 
           const SizedBox(height: 24),
-
-          // REKLAM - Banner
-          const BannerAdWidget(),
-
-          const SizedBox(height: 16),
 
           // Hikaye Beğenileri
           if (hasData)
@@ -1075,11 +1056,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
               lineColor: const Color(0xFF4ECDC4),
               hasData: hasData && dataProvider.totalCommentsCount > 0,
             ),
-
-          const SizedBox(height: 16),
-
-          // REKLAM - Banner (En Alt)
-          const BannerAdWidget(),
 
           const SizedBox(height: 100), // Bottom nav için boşluk
         ],
@@ -1503,14 +1479,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ? 'Privacy Policy'
                       : l10n.get('privacy_policy'),
                   iconColor: const Color(0xFF27AE60),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const PrivacyPolicyScreen(),
-                      ),
-                    );
-                  },
+                  onTap: () => _openLegalPage(context, isPrivacy: true),
                 ),
                 SettingsTile(
                   icon: Icons.description_outlined,
@@ -1519,14 +1488,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       : l10n.get('terms_of_use'),
                   iconColor: const Color(0xFF7F8C8D),
                   showDivider: false,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const TermsOfUseScreen(),
-                      ),
-                    );
-                  },
+                  onTap: () => _openLegalPage(context, isPrivacy: false),
                 ),
               ],
             ),
@@ -1534,6 +1496,33 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
           const SizedBox(height: 100), // Bottom nav için boşluk
         ],
+      ),
+    );
+  }
+
+  Future<void> _openLegalPage(
+    BuildContext context, {
+    required bool isPrivacy,
+  }) async {
+    final isTurkish = AppLocalizations.of(context).locale.languageCode == 'tr';
+    final path = isPrivacy ? 'privacy.html' : 'terms.html';
+    final languagePath = isTurkish ? 'tr/' : '';
+    final uri = Uri.parse(
+      'https://socialsense.furkanerdogan.com/$languagePath$path',
+    );
+
+    try {
+      final opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
+      if (opened || !context.mounted) return;
+    } catch (_) {
+      if (!context.mounted) return;
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          isTurkish ? 'Web sayfası açılamadı.' : 'Could not open the webpage.',
+        ),
       ),
     );
   }

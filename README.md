@@ -19,7 +19,7 @@ SocialSense is a Flutter app that turns an Instagram JSON data export into local
 
 SocialSense analyzes the JSON ZIP archive available through Instagram's data download tools. It is designed for Instagram users who want to inspect account relationships and interaction patterns without signing in through the app.
 
-The archive is selected from the device, parsed in a background isolate, and saved in the app's local documents directory. Parsed account data is not uploaded by the analysis flow; Google Mobile Ads and links opened outside the app may still use network access.
+The archive is selected from the device, parsed in a background isolate, and saved in the app's local documents directory. Parsed account data is not uploaded by the analysis flow; links opened outside the app may still use network access.
 
 ---
 
@@ -33,7 +33,6 @@ The archive is selected from the device, parsed in a background isolate, and sav
 - **Additional reports** — displays story likes, close friends, sent and received follow requests, saved content, and categorized interests when those files exist in the export.
 - **Alerts** — creates data-driven alerts for non-reciprocal follows, estimated ghost followers, and pending follow requests, with persisted read state.
 - **Guided experience** — includes a four-step Instagram export tutorial, Turkish and English localization, and persisted light or dark themes.
-- **Mobile ads** — integrates consent handling plus banner, interstitial, and app-open ads through Google Mobile Ads.
 
 ---
 
@@ -48,7 +47,6 @@ The archive is selected from the device, parsed in a background isolate, and sav
 | Local storage | Application documents directory, Shared Preferences |
 | File and link integration | File Picker, Path Provider, URL Launcher |
 | Localization | Flutter Localizations, custom Turkish and English dictionaries |
-| Monetization | Google Mobile Ads, User Messaging Platform consent flow |
 | Tooling | Flutter Test, Flutter Lints, Flutter Launcher Icons, Gradle, CocoaPods |
 
 ---
@@ -60,11 +58,11 @@ The app uses a lightweight layered architecture split between reusable core logi
 | Layer | Responsibility |
 | --- | --- |
 | `core/models` | Represents imported Instagram users, likes, comments, messages, interests, saved items, and aggregate data. |
-| `core/services` | Decodes ZIP archives, parses supported JSON structures, and manages mobile ad lifecycles. |
+| `core/services` | Decodes ZIP archives and parses supported JSON structures. |
 | `core/providers` | Owns imported data, loading and error state, computed analytics, and local persistence. |
 | `presentation/providers` | Stores UI settings and alert read state. |
 | `presentation/screens` | Implements onboarding, upload, dashboard, analysis, report, and settings flows. |
-| `presentation/widgets` | Provides reusable dashboard, report, tutorial, settings, alert, and ad components. |
+| `presentation/widgets` | Provides reusable dashboard, report, tutorial, settings, and alert components. |
 
 `MultiProvider` creates the shared `InstagramDataProvider`, `AppSettingsProvider`, and `AlertsProvider` instances at startup. Widgets subscribe to these `ChangeNotifier` objects and rebuild when imported data or preferences change.
 
@@ -85,7 +83,7 @@ File Picker -> InstagramDataParser -> InstagramDataProvider
                                       Dashboard, reports, and alerts
 ```
 
-The parser runs through `compute` to keep ZIP decoding away from the UI isolate. Parsed models are serialized to the app documents directory, while theme, language, alert state, and update metadata are stored with Shared Preferences. Dependency injection is limited to Provider registration; parsing helpers are static and the ad service is a singleton.
+The parser runs through `compute` to keep ZIP decoding away from the UI isolate. Parsed models are serialized to the app documents directory, while theme, language, alert state, and update metadata are stored with Shared Preferences. Dependency injection is limited to Provider registration, and parsing helpers are static.
 
 ---
 
@@ -95,11 +93,11 @@ The parser runs through `compute` to keep ZIP decoding away from the UI isolate.
 socialsense/
 ├── lib/
 │   ├── core/
-│   │   ├── constants/       # Colors and mobile ad identifiers
+│   │   ├── constants/       # Shared colors
 │   │   ├── localization/    # Turkish and English UI strings
 │   │   ├── models/          # Imported data models and analytics
 │   │   ├── providers/       # Instagram data state and persistence
-│   │   ├── services/        # ZIP parser and ad lifecycle service
+│   │   ├── services/        # ZIP parser
 │   │   ├── theme/           # Light and dark Material themes
 │   │   └── utils/           # Instagram profile and content launchers
 │   ├── presentation/
@@ -137,17 +135,14 @@ flutter pub get
 
 ### Configuration
 
-The project does not read environment variables. Mobile advertising and Android release signing use local files that are excluded by `.gitignore`:
+The project does not read environment variables. Android release signing uses local files that are excluded by `.gitignore`:
 
 | File | Required configuration |
 | --- | --- |
-| `lib/core/constants/ad_ids.dart` | Defines Android and iOS app-open, interstitial, and banner ad unit constants used by `AdService` and `BannerAdWidget`. |
-| `android/app/src/main/AndroidManifest.xml` | Declares the Flutter activity and the Google Mobile Ads application ID. |
-| `ios/Runner/Info.plist` | Declares the iOS bundle settings, file access description, and Google Mobile Ads application ID. |
 | `android/key.properties` | Points Gradle to the release keystore and supplies its alias and credentials. |
 | `android/app/*.jks` | Contains the Android release signing key referenced by `key.properties`. |
 
-Use development or test ad IDs while working locally. Production identifiers and signing credentials should remain outside version control.
+Production signing credentials should remain outside version control.
 
 ### Run
 
@@ -221,7 +216,9 @@ dart run flutter_launcher_icons
 Do not commit Instagram exports, ZIP archives, ad credentials, or signing keys.
 
 ---
+## Copyright
 
-## 📄 License
+Copyright © 2026 Furkan Erdoğan. All rights reserved.
 
-This project is licensed under the MIT License.
+This repository is published for portfolio purposes only.
+Unauthorized copying, modification, redistribution, or commercial use of this source code is prohibited without prior written permission.
